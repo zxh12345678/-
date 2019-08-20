@@ -131,7 +131,7 @@ def handle_photo():
             list_info[-1]['arr']['type'].append('image')
     list_info.reverse()  # 翻转
     final_dict = {"list": list_info}
-    with open("../zxh12345678.github.io/source/photos/data.json","w") as fp:
+    with open("https://github.com/zxh12345678/zxh12345678.github.io/blob/master/photos/data.json","w") as fp:
         json.dump(final_dict, fp)
 
 def cut_photo():
