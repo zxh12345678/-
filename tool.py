@@ -33,7 +33,7 @@ def list_img_file(directory):
         name, fileformat = filename.split(".")
         if fileformat.lower() == "jpg" or fileformat.lower() == "png" or fileformat.lower() == "gif":
             new_list.append(filename)
-    # print new_list
+    print(new_list)
     return new_list
 
 
@@ -71,7 +71,8 @@ def compress(choose, des_dir, src_dir, file_list):
 def compress_photo():
     '''调用压缩图片的函数
     '''
-    src_dir, des_dir = "photos/", "min_photos/"
+    #global file_list_des
+    src_dir, des_dir = "./photos/", "./min_photos/"
     
     if directory_exists(src_dir):
         if not directory_exists(src_dir):
@@ -87,8 +88,6 @@ def compress_photo():
     for i in range(len(file_list_des)):
         if file_list_des[i] in file_list_src:
             file_list_src.remove(file_list_des[i])
-    if len(file_list_src) == 0:
-        print("=====没有新文件需要压缩=======")
     compress('4', des_dir, src_dir, file_list_src)
 
 def handle_photo():
@@ -100,7 +99,6 @@ def handle_photo():
     src_dir, des_dir = "photos/", "min_photos/"
     file_list = list_img_file(src_dir)
     list_info = []
-    file_list.sort(key=lambda x: x.split('_')[0])   # 按照日期排序
     for i in range(len(file_list)):
         filename = file_list[i]
         date_str, info = filename.split("_")
@@ -131,6 +129,7 @@ def handle_photo():
             list_info[-1]['arr']['type'].append('image')
     list_info.reverse()  # 翻转
     final_dict = {"list": list_info}
+
     with open("C:/Users/ZXH/hexo/source/photos/data.json","w") as fp:
         json.dump(final_dict, fp)
 
@@ -175,7 +174,6 @@ if __name__ == "__main__":
     compress_photo()   # 压缩图片，并保存到mini_photos文件夹下
     git_operation()    # 提交到github仓库
     handle_photo()     # 将文件处理成json格式，存到博客仓库中
-    
     
     
     
