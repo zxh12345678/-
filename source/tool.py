@@ -131,12 +131,12 @@ def handle_photo():
             list_info[-1]['arr']['type'].append('image')
     list_info.reverse()  # 翻转
     final_dict = {"list": list_info}
-    with open("https://github.com/zxh12345678/zxh12345678.github.io/blob/master/photos/data.json","w") as fp:
+    with open("C:/Users/ZXH/hexo/source/photos/data.json","w") as fp:
         json.dump(final_dict, fp)
 
 def cut_photo():
     """裁剪算法
-    
+
     ----------
     调用Graphics类中的裁剪算法，将src_dir目录下的文件进行裁剪（裁剪成正方形）
     """
